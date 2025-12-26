@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access - Chapter1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #050505;
+            color: #A1A1AA;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            color: #A1A1AA;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #ffffff;
+            color: #050505;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background-color: #e5e5e5;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .error-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 4px;
+            color: #fca5a5;
+            font-size: 0.875rem;
+            text-align: center;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Access</h1>
+        <form id="accessForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="kode">Kode</label>
+                <input type="text" id="kode" name="kode" required autofocus>
+            </div>
+            <button type="submit">Fortsæt</button>
+            <div id="errorMessage" class="error-message">Forkert kode.</div>
+        </form>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const kodeInput = document.getElementById('kode');
+            const errorMessage = document.getElementById('errorMessage');
+            const enteredCode = kodeInput.value.trim();
+            
+            // Placeholder code value
+            const correctCode = 'CHAPTER1';
+            
+            if (enteredCode === correctCode) {
+                // Redirect to main site
+                window.location.href = '/main-site/';
+            } else {
+                // Show error message
+                errorMessage.classList.add('show');
+                kodeInput.value = '';
+                kodeInput.focus();
+            }
+        }
+    </script>
+</body>
+</html>

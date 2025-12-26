@@ -1,1321 +1,507 @@
-<html lang="da" class="scroll-smooth"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1 | Premium Video Universes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        mono: ['"Space Mono"', 'monospace'],
-                        sans: ['"Inter"', 'sans-serif'],
+<html lang="da" class="dark"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1 | Launching Soon</title>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    darkMode: 'class',
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['"Inter"', 'sans-serif'],
+                serif: ['"Playfair Display"', 'serif'],
+                mono: ['"Space Mono"', 'monospace'],
+            },
+            colors: {
+                cinema: {
+                    950: '#050505',
+                    900: '#0a0a0a',
+                    800: '#121212',
+                },
+            },
+            backgroundImage: {
+                'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.8\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",
+            },
+            animation: {
+                'blob': 'blob 10s infinite',
+                'float': 'float 6s ease-in-out infinite',
+                'breathe-status': 'breatheStatus 4s ease-in-out infinite', // Smooth breathing added
+            },
+            keyframes: {
+                blob: {
+                    '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                    '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                    '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                    '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                },
+                // New smooth status light animation
+                breatheStatus: {
+                    '0%, 100%': { 
+                        backgroundColor: '#22c55e', // Green
+                        transform: 'scale(1)',
+                        boxShadow: '0 0 0 rgba(34, 197, 94, 0)'
                     },
-                    colors: {
-                        cinema: {
-                            950: '#050505', 
-                            900: '#0a0a0a',
-                            800: '#121212',
-                        },
-                        platinum: {
-                            400: '#e1e1e3', 
-                            500: '#a1a1aa',
-                        }
-                    },
-                    backgroundImage: {
-                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.8\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",
+                    '50%': { 
+                        backgroundColor: '#eab308', // Yellow
+                        transform: 'scale(1.1)',
+                        boxShadow: '0 0 8px rgba(234, 179, 8, 0.3)'
                     }
                 }
             }
         }
-    </script>
+    }
+}
+</script>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<style>
+/* Global Fixes */
+html {
+    background-color: #050505;
+    color: #e4e4e7;
+    -webkit-font-smoothing: antialiased;
+}
+main {
+    position: relative;
+    z-index: 50;
+    isolation: isolate;
+}
+canvas, video, svg, iframe, [data-lottie] {
+    pointer-events: none !important;
+}
 
-    <style>
-        body {
-            background-color: #050505;
-            color: #A1A1AA;
-            cursor: none; /* Custom cursor */
-            -webkit-font-smoothing: antialiased;
-        }
+/* Custom Cursor Logic */
+@media (hover: hover) and (pointer: fine) {
+    body, a, button, .nav-link, input, textarea, select {
+        cursor: none !important;
+    }
+    #cursor-glow, #cursor-dot {
+        display: block !important;
+    }
+}
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; }
+/* Cursor Styles */
+#cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    display: none;
+}
 
-        /* Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+#cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #ededed;
+    box-shadow: 0 0 10px rgba(255,255,255,0.8);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
+    display: none;
+}
 
-        .fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
-            to { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
+/* Cursor Hover States */
+.cursor-hover-active #cursor-glow {
+    width: 150px;
+    height: 150px;
+}
+.cursor-hover-active #cursor-dot {
+    transform: translate(-50%, -50%) scale(1.5);
+}
 
-        /* Glass / Materials */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
+/* Noise Overlay */
+.noise-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 40; opacity: 0.04;
+    background-image: var(--tw-bg-noise);
+    mix-blend-mode: overlay;
+}
+/* Vivid Background Gradients */
+.vivid-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: 0;
+    animation: blob 15s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Reveal Animation */
+.reveal-text {
+    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0; transform: translateY(20px);
+}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-500 { animation-delay: 0.5s; }
+@keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Cursor Blink */
+.cursor-blink {
+    display: inline-block; width: 2px; height: 1.1em; background: #FF0000;
+    animation: blink 1s step-end infinite; vertical-align: text-bottom;
+    margin-left: 1px; margin-bottom: 2px;
+}
+@keyframes blink { 50% { opacity: 0; } }
+/* Canvas Wrapper */
+#canvas-wrapper {
+    position: relative; width: 100%; height: 250px;
+    display: flex; justify-content: center; align-items: center;
+    overflow: visible; z-index: 10; pointer-events: none;
+}
+/* Progress Line - Modified for slower, calmer animation */
+@keyframes scan-shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+.youtube-line-anim {
+    /* Softened the highlight from pure white to a light red tint to reduce intensity */
+    background: linear-gradient(90deg, #990000 0%, #cc0000 40%, #ffcccc 50%, #cc0000 60%, #990000 100%);
+    background-size: 200% 100%;
+    /* Slowed down significantly from 2.5s to 7s */
+    animation: scan-shimmer 7s linear infinite;
+    box-shadow: 0 -1px 8px rgba(220, 38, 38, 0.2);
+}
+</style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style><link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><link id="all-fonts-link-font-google-sans-flex" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-google-sans-flex">.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }</style><link id="all-fonts-link-font-oswald" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-oswald">.font-oswald { font-family: 'Oswald', sans-serif !important; }</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-dm-sans">.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }</style></head>
+<body class="min-h-screen flex flex-col relative overflow-hidden selection:bg-red-600/30 selection:text-white">
 
-        /* Cursor */
-        #cursor-glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            mix-blend-mode: screen;
-            transition: width 0.3s, height 0.3s;
-        }
-        #cursor-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background-color: #ededed;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 10000;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
+<!-- Background (component) added by Aura -->
+<div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="; mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div class="spline-container absolute top-0 left-0 w-full h-full z-0"><iframe src="https://my.spline.design/glowingplanetparticles-HmCVKutonlFn3Oqqe6DI9nWi/" frameborder="0" width="100%" height="100%"></iframe></div></div>
 
-        /* Cinematic Pan */
-        @keyframes slowPan {
-            0% { transform: scale(1.1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1.1); }
-        }
-        .animate-pan {
-            animation: slowPan 30s infinite alternate ease-in-out;
-        }
-    </style>
-</head>
-<body class="bg-cinema-950 text-stone-300 selection:bg-white selection:text-black overflow-x-hidden">
-
-    <!-- Background -->
-    <div class="fixed top-0 w-full h-screen -z-10 saturate-0 brightness-0" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)">
-        <div class="absolute top-0 left-0 -z-10 w-full h-full"></div>
+    <!-- FX: Noise -->
+    <div class="noise-layer"></div>
+    
+    <!-- FX: Background Gradients -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="vivid-glow top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-red-900/20 mix-blend-screen"></div>
+        <div class="vivid-glow bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-rose-900/10 mix-blend-screen animation-delay-2000"></div>
+        <div class="vivid-glow top-[40%] left-[30%] w-[30vw] h-[30vw] bg-purple-900/10 mix-blend-screen animation-delay-4000 filter blur-[100px]"></div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div id="cursor-glow" style="left: 107px; top: 562px; width: 300px; height: 300px;"></div>
-    <div id="cursor-dot" style="left: 107px; top: 562px; transform: translate(-50%, -50%) scale(1);"></div>
-
-    <!-- Noise Overlay -->
-    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.04] bg-noise mix-blend-overlay"></div>
+    <!-- Background Grid -->
+    <div class="fixed inset-0 z-0 flex justify-center items-center pointer-events-none opacity-20">
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-40 px-8 py-6 flex justify-between items-center text-stone-200">
-        <!-- Logo MARK -->
-        <a href="#" onclick="router('home')" class="z-50 relative group flex items-center gap-3">
-            <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white group-hover:text-stone-300 transition-colors">
-                <circle cx="50" cy="50" r="48" stroke="currentColor" stroke-width="2" class="opacity-20"></circle>
-                <path d="M60 30V70M40 30C30 30 30 40 30 50C30 60 30 70 40 70" stroke="currentColor" stroke-width="6" stroke-linecap="square"></path>
-            </svg>
-            <span class="font-mono text-xs tracking-[0.2em] uppercase mix-blend-difference">
-                C<span class="text-white group-hover:text-zinc-400 transition-colors">1</span>
-            </span>
-        </a>
-        
-        <!-- Desktop Menu (Centered) -->
-        <div class="hidden md:flex gap-12 font-mono text-[10px] tracking-widest uppercase absolute left-1/2 -translate-x-1/2 mix-blend-difference z-50">
-            <button onclick="router('home')" id="nav-home" class="nav-link hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-px after:bg-white after:transition-all hover:after:w-full text-white after:w-full">Forside</button>
-            <button onclick="router('portfolio')" id="nav-portfolio" class="nav-link hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-px after:bg-white after:transition-all hover:after:w-full">Portefølje</button>
-            <button onclick="router('contact')" id="nav-contact" class="nav-link hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-px after:bg-white after:transition-all hover:after:w-full">Kontakt</button>
+    <nav class="fixed top-0 w-full z-50 px-8 py-8 flex justify-between items-start pointer-events-none">
+        <div class="reveal-text pointer-events-auto">
+            <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase">Est. 2024</div>
         </div>
-
-        <!-- Right Side: Contact Trigger -->
-        <div class="flex items-center gap-6 z-50">
-            <button onclick="router('contact')" class="group relative flex items-center gap-3 pl-1.5 pr-4 py-1.5 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl transition-all duration-500 hover:border-white/30 hover:bg-white/5 cursor-none">
-                <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center border border-white/5 text-stone-400 group-hover:text-white group-hover:border-white/30 transition-all duration-500">
-                    <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="font-mono text-[9px] uppercase tracking-widest text-stone-400 group-hover:text-stone-200 transition-colors">Start projekt</span>
-                    <span class="w-1 h-1 rounded-full bg-stone-600 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-500"></span>
-                </div>
-            </button>
+        
+        <div class="reveal-text delay-100 pointer-events-auto">
+            <div class="flex items-center gap-3 px-3 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-20"></span>
+                  <!-- Modified: breathing animation instead of glitch -->
+                  <span class="relative inline-flex rounded-full h-2 w-2 animate-breathe-status"></span>
+                </span>
+                <!-- Modified: Text updated to "Systemet aktiveres" -->
+                <span class="font-mono text-[10px] uppercase tracking-widest text-zinc-300">Systemet aktiveres</span>
+            </div>
         </div>
     </nav>
 
-    <!-- CONTENT WRAPPER -->
-    <div id="app-content">
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col w-full max-w-[1400px] mr-auto ml-auto pt-10 pr-6 pl-6 relative items-center justify-center">
         
-        <!-- PAGE: HOME -->
-        <main id="page-home" class="page-view relative w-full fade-in">
+        <div class="text-center w-full max-w-5xl mx-auto space-y-12 relative z-30">
             
-            <!-- 1. Hero: Branding Focused -->
-            <header class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center pt-20">
-                <div class="absolute inset-0 z-0">
-                    <div class="z-10 bg-black/40 absolute top-0 right-0 bottom-0 left-0"></div>
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/34fa9afc-3d27-4ab4-b6b5-cd6e89cab95b_3840w.jpg" alt="Cinematic Studio" class="w-full h-full object-cover animate-pan opacity-80">
+            <!-- Particle Logo Canvas -->
+            <div class="reveal-text delay-200 w-full flex justify-center items-center py-4 relative">
+                <div id="canvas-wrapper">
+                    <canvas id="logo-canvas" width="3724" height="600" style="width: 1862px; height: 300px;"></canvas>
                 </div>
+            </div>
 
-                <!-- Massive Brand Mark Background -->
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none opacity-[0.08] mix-blend-overlay">
-                    <svg width="800" height="800" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="48" stroke="white" stroke-width="0.5"></circle>
-                        <path d="M60 25V75M35 25C20 25 20 40 20 50C20 60 20 75 35 75" stroke="white" stroke-width="2" stroke-linecap="square"></path>
-                    </svg>
+            <!-- Value Prop -->
+            <div class="delay-300 min-h-[140px] md:min-h-[120px] animate-float z-30 pointer-events-auto relative !opacity-100 !visible">
+                <h1 class="font-sans text-xl md:text-3xl text-zinc-300 font-light leading-relaxed">
+                    Danmarks nye produktionsselskab med speciale i
+                    <span class="text-white font-light inline-block min-w-[200px] relative mt-2">
+                        <span class="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-80"></span>
+                        <span id="typewriter" class="font-sans text-xl md:text-3xl text-white drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">Y</span>
+                        <span class="cursor-blink"></span>
+                    </span>
+                </h1>
+            </div>
+
+            <!-- CTA -->
+            <div class="reveal-text delay-500 flex flex-col items-center gap-6 mt-8 relative z-30 pointer-events-auto">
+                <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.1em] text-center max-w-md leading-relaxed">
+                    Vi er allerede i gang, mens hjemmesiden lancerer stadig - kontakt os i dag
+                </p>
+                <a href="mailto:kontakt@chapter1.dk" class="group relative inline-flex items-center gap-3 font-mono text-sm text-zinc-300 transition-all duration-300 hover:text-white">
+                    <span class="p-2 rounded-full bg-white/5 group-hover:bg-red-600/10 transition-colors text-red-500 border border-white/5 group-hover:border-red-600/20">
+                        <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+                    </span>
+                    <span class="tracking-widest relative">
+                        kontakt@chapter1.dk
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="fixed bottom-0 w-full z-40 border-t border-white/5 bg-cinema-950/80 backdrop-blur-sm pointer-events-auto">
+        <div class="max-w-[1400px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-6 overflow-hidden w-full md:w-auto">
+                <div class="flex gap-2 font-mono text-[10px] text-zinc-600 uppercase tracking-wider whitespace-nowrap" id="system-log">
+                    <!-- Updated text to [OPTAGER] and Danish -->
+                    <span class="text-red-500">[OPTAGER]</span>
+                    <span class="hidden md:inline text-zinc-700">|</span>
+                    <span class="hidden md:inline opacity-50">Initialiserer Stream...</span>
                 </div>
+            </div>
+            <div class="flex items-center gap-4 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
+                <span class="hidden md:block">DK — 2024</span>
+                <span class="block md:hidden">C1 ©</span>
+                <div class="w-12 h-[1px] bg-zinc-800"></div>
+                <div class="flex gap-1">
+                    <div class="w-1 h-1 bg-red-900/50 rounded-full animate-pulse"></div>
+                    <div class="w-1 h-1 bg-red-700/50 rounded-full animate-pulse delay-100"></div>
+                    <div class="w-1 h-1 bg-red-600 rounded-full animate-pulse delay-200"></div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 left-0 h-[1px] youtube-line-anim w-full" id="progress-bar"></div>
+    </footer>
 
-                <div class="reveal active flex flex-col z-20 text-center max-w-5xl pr-6 pl-6 relative items-center">
-                    
-                    <!-- Chapter 1 Intro Title -->
-                    <div class="mb-4">
-                        <h2 class="relative z-20 flex flex-col items-center justify-center gap-6 md:text-5xl uppercase text-3xl text-stone-200 font-serif opacity-100 transition-all duration-500 min-h-[120px]">
-    <!-- Main Dynamic Typography -->
-    <div class="relative flex items-center justify-center text-center mix-blend-hard-light">
-        <span class="relative inline-flex items-center justify-center h-[120px] w-full md:w-[600px] select-none" style="opacity: 0; animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
-    <canvas id="logo-canvas" class="absolute inset-0 w-full h-full mix-blend-screen pointer-events-auto"></canvas>
-    <div class="sr-only">CHAPTER 1</div>
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-glow" style="left: 294px; top: 4px;"></div>
+    <div id="cursor-dot" style="left: 294px; top: 4px;"></div>
+
+    <!-- Scripts -->
     <script>
+        // --- CUSTOM CURSOR LOGIC ---
+        (function() {
+            const glow = document.getElementById('cursor-glow');
+            const dot = document.getElementById('cursor-dot');
+            const body = document.body;
+            
+            // Check for touch device or no hover capability
+            const isTouch = window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(hover: none)").matches;
+            
+            if (!isTouch) {
+                // Initial visibility set by CSS media query, but let's ensure logic runs
+                
+                window.addEventListener('mousemove', (e) => {
+                    const x = e.clientX;
+                    const y = e.clientY;
+                    
+                    // Set left and top as requested
+                    glow.style.left = x + 'px';
+                    glow.style.top = y + 'px';
+                    dot.style.left = x + 'px';
+                    dot.style.top = y + 'px';
+                });
+
+                // Hover Effects
+                const interactiveElements = document.querySelectorAll('a, button, .nav-link');
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        body.classList.add('cursor-hover-active');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        body.classList.remove('cursor-hover-active');
+                    });
+                });
+            }
+        })();
+
+        // Typewriter Effect
+        const words = ["YouTube Content", "Visuel Storytelling", "Social Media Strategy", "Digital Growth", "Brand Building"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeSpeed = 60;
+        const deleteSpeed = 30;
+        const pauseTime = 2000;
+        const element = document.getElementById('typewriter');
+
+        function type() {
+            if (!element) return;
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                element.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                element.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            let delay = isDeleting ? deleteSpeed : typeSpeed;
+            if (!isDeleting && charIndex === currentWord.length) {
+                delay = pauseTime;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                delay = 500;
+            }
+            setTimeout(type, delay);
+        }
+        document.addEventListener('DOMContentLoaded', () => setTimeout(type, 800));
+
+        // Footer Log - Translated to Danish
+        const modules = ["Video Codec", "Upload Stream", "Målgruppe Sync", "Algoritme", "Content ID"];
+        const logElement = document.getElementById('system-log');
+        let moduleIndex = 0;
+        setInterval(() => {
+            logElement.innerHTML = `<span class="text-red-500">[OPTAGER]</span><span class="hidden md:inline text-zinc-700">|</span><span class="text-zinc-500">Buffer: ${modules[moduleIndex]}...</span>`;
+            moduleIndex = (moduleIndex + 1) % modules.length;
+        }, 2500);
+
+        // --- PARTICLE LOGO FIX (Cleaned Artifacts + Scaled properly) ---
         (function() {
             const canvas = document.getElementById('logo-canvas');
             const ctx = canvas.getContext('2d', { willReadFrequently: true });
             let particles = [];
-            let mouse = { x: null, y: null, radius: 100 };
+            let mouse = { x: null, y: null, radius: 120 };
             
-            // Configuration
             const text = "CHAPTER 1";
-            const font = "italic 500 80px 'Playfair Display', serif";
-            const particleGap = 3; // Lower = more particles
-            const particleSize = 1.2;
-            const mouseForce = 3; // Repel strength
-            const returnSpeed = 0.08; // How fast they return to origin
+            const isMobile = window.innerWidth < 768;
+            const fontSize = isMobile ? '55px' : '130px'; 
+            const font = `italic 500 ${fontSize} 'Playfair Display', serif`;
+            const particleGap = isMobile ? 2 : 3; 
+            const particleSize = isMobile ? 1 : 1.3;
+            const mouseForce = 8; 
+            const returnSpeed = 0.08; 
             
-            // Adjust for retina displays
             function resize() {
                 const dpr = window.devicePixelRatio || 1;
-                const rect = canvas.getBoundingClientRect();
-                canvas.width = rect.width * dpr;
-                canvas.height = rect.height * dpr;
-                ctx.scale(dpr, dpr);
-                initParticles(rect.width, rect.height);
+                // Reset transform to identity before scaling to prevent cumulative accumulation
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                
+                canvas.width = window.innerWidth * dpr;
+                canvas.height = 300 * dpr;
+                canvas.style.width = window.innerWidth + 'px';
+                canvas.style.height = '300px';
+                
+                // Apply scaling
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                
+                initParticles(window.innerWidth, 300);
             }
 
             class Particle {
                 constructor(x, y) {
-                    this.x = Math.random() * canvas.width; // Start random
-                    this.y = Math.random() * canvas.height;
+                    this.x = Math.random() * window.innerWidth; // start random
+                    this.y = Math.random() * 300;
                     this.targetX = x;
                     this.targetY = y;
-                    this.vx = 0;
-                    this.vy = 0;
                     this.size = Math.random() * particleSize + 0.5;
-                    this.angle = Math.random() * Math.PI * 2; // For gentle floating
+                    this.color = 'rgba(255, 255, 255, 0.95)';
                 }
-
                 draw() {
-                    ctx.fillStyle = 'rgba(245, 245, 244, 0.9)'; // Stone-100
+                    ctx.fillStyle = this.color;
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.closePath();
                     ctx.fill();
                 }
-
-                update(time) {
-                    // Mouse Interaction
+                update() {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let force = (mouse.radius - distance) / mouse.radius;
-                    let directionX = forceDirectionX * force * mouseForce;
-                    let directionY = forceDirectionY * force * mouseForce;
-
-                    if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
+                    if (distance < mouse.radius && mouse.x !== null) {
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= (dx / distance) * force * mouseForce;
+                        this.y -= (dy / distance) * force * mouseForce;
                     } else {
-                        // Gentle breathing noise
-                        this.x += (this.targetX - this.x) * returnSpeed;
-                        this.y += (this.targetY - this.y) * returnSpeed;
-                        
-                        // Subtle ambient drift
-                        this.x += Math.sin(time * 0.002 + this.targetY * 0.05) * 0.1;
-                        this.y += Math.cos(time * 0.002 + this.targetX * 0.05) * 0.1;
+                        if (this.x !== this.targetX) this.x -= (this.x - this.targetX) * returnSpeed;
+                        if (this.y !== this.targetY) this.y -= (this.y - this.targetY) * returnSpeed;
                     }
                 }
             }
 
             function initParticles(width, height) {
                 particles = [];
-                // Draw text to off-screen canvas/region to get pixel data
-                ctx.clearRect(0, 0, width, height);
-                ctx.font = font;
-                ctx.fillStyle = 'white';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(text, width / 2, height / 2);
+                // Off-screen canvas for text data
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = width;
+                tempCanvas.height = height;
+                const tCtx = tempCanvas.getContext('2d');
 
-                // Get pixel data
-                const textCoordinates = ctx.getImageData(0, 0, width * (window.devicePixelRatio || 1), height * (window.devicePixelRatio || 1));
-                const data = textCoordinates.data;
-                const dpr = window.devicePixelRatio || 1;
+                tCtx.clearRect(0,0, width, height);
+                tCtx.font = font;
+                tCtx.fillStyle = 'white';
+                tCtx.textAlign = 'center';
+                tCtx.textBaseline = 'middle';
+                tCtx.fillText(text, width / 2, height / 2);
 
-                // Scan pixel data
-                for (let y = 0; y < textCoordinates.height; y += Math.round(particleGap * dpr)) {
-                    for (let x = 0; x < textCoordinates.width; x += Math.round(particleGap * dpr)) {
-                        const alpha = data[(y * textCoordinates.width + x) * 4 + 3];
-                        if (alpha > 128) {
-                            particles.push(new Particle(x / dpr, y / dpr));
+                const imageData = tCtx.getImageData(0, 0, width, height);
+                const data = imageData.data;
+                const w = imageData.width;
+                const h = imageData.height;
+
+                for (let y = 0; y < h; y += particleGap) {
+                    for (let x = 0; x < w; x += particleGap) {
+                        const index = (y * w + x) * 4;
+                        const alpha = data[index + 3];
+                        
+                        // Neighbor Check for Artifact Removal
+                        if (alpha > 200) {
+                            let neighbors = 0;
+                            // Check Up
+                            if (y - particleGap >= 0 && data[((y - particleGap) * w + x) * 4 + 3] > 200) neighbors++;
+                            // Check Down
+                            if (y + particleGap < h && data[((y + particleGap) * w + x) * 4 + 3] > 200) neighbors++;
+                            // Check Left
+                            if (x - particleGap >= 0 && data[(y * w + (x - particleGap)) * 4 + 3] > 200) neighbors++;
+                            // Check Right
+                            if (x + particleGap < w && data[(y * w + (x + particleGap)) * 4 + 3] > 200) neighbors++;
+
+                            // Only spawn if connected to at least 2 other pixels
+                            if (neighbors >= 2) {
+                                particles.push(new Particle(x, y));
+                            }
                         }
                     }
                 }
-                ctx.clearRect(0, 0, width, height); // Clear the text
             }
 
-            function animate(time) {
-                ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
-                
-
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio||1), canvas.height / (window.devicePixelRatio||1));
                 for (let i = 0; i < particles.length; i++) {
                     particles[i].draw();
-                    particles[i].update(time);
+                    particles[i].update();
                 }
                 requestAnimationFrame(animate);
             }
 
-            // Event Listeners
-            window.addEventListener('resize', resize);
-            
-            canvas.addEventListener('mousemove', (e) => {
+            window.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 mouse.x = e.clientX - rect.left;
                 mouse.y = e.clientY - rect.top;
             });
-            
-            canvas.addEventListener('mouseleave', () => {
-                mouse.x = null;
-                mouse.y = null;
-            });
-
-            // Init - Wait for font load
-            setTimeout(() => {
-                resize();
-                animate(0);
-            }, 500);
-
+            window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+            window.addEventListener('resize', resize);
+            document.fonts.ready.then(() => { resize(); animate(); });
         })();
     </script>
-</span>
-        <span class="w-[2px] h-[0.8em] bg-stone-400/80 ml-2 animate-pulse"></span>
-    </div>
-</h2>
-                    </div><div class="flex bg-black/30 border-white/10 border rounded-full mb-10 pt-1.5 pr-3 pb-1.5 pl-3 backdrop-blur-md gap-x-2 gap-y-2 items-center">
-    <span class="relative flex h-2 w-2">
-        <span class="ping-dot animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 transition-colors duration-300"></span>
-        <span class="static-dot relative inline-flex rounded-full h-2 w-2 bg-emerald-500 transition-colors duration-300"></span>
-    </span>
-    <span class="type-text text-[9px] uppercase text-emerald-100/80 tracking-widest font-mono whitespace-nowrap transition-colors duration-300">Kom på YouTube i da</span>
-    <span class="cursor-bar h-2.5 w-0.5 bg-emerald-500/50 animate-pulse transition-colors duration-300"></span>
 
-    <script>
-        (function() {
-            const container = document.currentScript.parentElement;
-            const textEl = container.querySelector('.type-text');
-            const pingEl = container.querySelector('.ping-dot');
-            const dotEl = container.querySelector('.static-dot');
-            const cursorEl = container.querySelector('.cursor-bar');
-
-            const states = [
-                {
-                    text: "Kom på YouTube i dag",
-                    colors: {
-                        ping: "bg-emerald-400",
-                        dot: "bg-emerald-500",
-                        text: "text-emerald-100/80",
-                        cursor: "bg-emerald-500/50"
-                    }
-                },
-                {
-                    text: "Bliv markedsleder blandt de førende generationer",
-                    colors: {
-                        ping: "bg-indigo-400",
-                        dot: "bg-indigo-500",
-                        text: "text-indigo-100/80",
-                        cursor: "bg-indigo-500/50"
-                    }
-                },
-                {
-                    text: "Start på YouTube før din konkurrenter gør",
-                    colors: {
-                        ping: "bg-red-400",
-                        dot: "bg-red-500",
-                        text: "text-red-100/80",
-                        cursor: "bg-red-500/50"
-                    }
-                },
-                {
-                    text: "Vidste du at, YouTube er større end TV kanal blandt befolkningen mellem 0-40 år?",
-                    colors: {
-                        ping: "bg-yellow-400",
-                        dot: "bg-yellow-500",
-                        text: "text-yellow-100/80",
-                        cursor: "bg-yellow-500/50"
-                    }
-                },
-                {
-                    text: "YouTube er verdens største sociale medie indenfor long form content",
-                    colors: {
-                        ping: "bg-white/60",
-                        dot: "bg-white/80",
-                        text: "text-white/90",
-                        cursor: "bg-white/60"
-                    }
-                },
-                {
-                    text: "Storytelling behøves ikke være svært",
-                    colors: {
-                        ping: "bg-stone-400",
-                        dot: "bg-stone-500",
-                        text: "text-stone-200/80",
-                        cursor: "bg-stone-500/50"
-                    }
-                }
-            ];
-
-            let stateIdx = 0;
-            let charIdx = states[0].text.length;
-            let isDeleting = false;
-
-            function typeWriter() {
-                if (!document.body.contains(container)) return;
-
-                const currentState = states[stateIdx];
-                const currentText = currentState.text;
-
-                if (isDeleting) {
-                    textEl.textContent = currentText.substring(0, charIdx - 1);
-                    charIdx--;
-                    if (charIdx === 0) {
-                        isDeleting = false;
-                        stateIdx = (stateIdx + 1) % states.length;
-                        
-                        // Switch Colors
-                        const nextState = states[stateIdx];
-                        const prevColors = currentState.colors;
-                        const nextColors = nextState.colors;
-                        
-                        pingEl.classList.replace(prevColors.ping, nextColors.ping);
-                        dotEl.classList.replace(prevColors.dot, nextColors.dot);
-                        textEl.classList.replace(prevColors.text, nextColors.text);
-                        cursorEl.classList.replace(prevColors.cursor, nextColors.cursor);
-                        
-                        setTimeout(typeWriter, 500);
-                        return;
-                    }
-                    setTimeout(typeWriter, 30);
-                } else {
-                    textEl.textContent = currentText.substring(0, charIdx + 1);
-                    charIdx++;
-                    if (charIdx === currentText.length) {
-                        isDeleting = true;
-                        setTimeout(typeWriter, 2000);
-                        return;
-                    }
-                    setTimeout(typeWriter, 50);
-                }
-            }
-
-            // Start delay
-            setTimeout(() => {
-                isDeleting = true; // Start by deleting first phrase
-                typeWriter();
-            }, 2000);
-        })();
-    </script>
-</div>
-
-                    <h1 class="md:text-7xl lg:text-8xl leading-[1.1] text-5xl text-stone-100 tracking-tight font-serif mb-8 drop-shadow-2xl">
-                        Vi bygger <span class="italic font-light text-white/80">YouTube kanaler</span> <br>
-                        for ambitiøse virksomheder.
-                    </h1>
-
-                    <p class="max-w-lg mx-auto font-mono text-xs md:text-sm text-stone-300 leading-relaxed tracking-wide mt-8 border-t border-white/10 pt-8 drop-shadow-md">
-                        STRATEGI. PRODUKTION. VÆKST.<br>
-                        SKALERBARE VIDEOFORMATER DER SKABER VÆRDI.
-                    </p>
-                </div>
-            </header>
-
-            <!-- 2. What We Do (Timeline Redesign) -->
-            <section class="relative py-32 md:py-48 overflow-hidden border-b border-white/5 bg-cinema-900">
-                <div class="relative z-20 max-w-7xl mx-auto px-6">
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                        <!-- Left Timeline -->
-                        <div class="lg:col-span-1 hidden lg:flex justify-center relative">
-                            <div class="w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent absolute left-1/2 -translate-x-1/2"></div>
-                            <!-- Dot 1 -->
-                            <div class="absolute top-24 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cinema-950 border border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] z-10"></div>
-                            <!-- Dot 2 -->
-                            <div class="absolute top-[600px] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cinema-950 border border-white/30 z-10"></div>
-                        </div>
-
-                        <!-- Content Area -->
-                        <div class="lg:col-span-11 space-y-32">
-                            
-                            <!-- Header / Intro Text -->
-                            <div class="reveal max-w-3xl">
-                                <h2 class="font-serif text-3xl md:text-5xl text-stone-200 leading-tight mb-6">
-                                    Skalerbare formater. <br>
-                                    <span class="italic text-stone-500">Gentagelig succes.</span>
-                                </h2>
-                                <p class="font-mono text-sm text-stone-400 leading-relaxed max-w-xl">
-                                    Vi hjælper virksomheder med at gå fra tilfældige videoer til at eje deres egen mediekanal. Vi designer formater, der engagerer seerne og skaber loyalitet.
-                                </p>
-                            </div>
-
-                            <!-- STEP 1 -->
-                            <div class="reveal group">
-                                <div class="flex flex-col md:flex-row gap-12 items-end">
-                                    <div class="w-full">
-                                        <div class="flex items-center gap-4 mb-6">
-                                            <span class="font-mono text-[10px] text-emerald-500 border border-emerald-500/20 bg-emerald-950/30 px-3 py-1 rounded-full uppercase tracking-widest">01. Strategi</span>
-                                            <div class="h-px flex-1 bg-white/10"></div>
-                                        </div>
-                                        
-                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-8">
-                                            <div>
-                                                <h3 class="font-serif text-3xl text-white mb-4">YouTube Strategi</h3>
-                                                <p class="font-sans text-sm text-stone-400 leading-7">
-                                                    Vi bygger din YouTube kanal fra bunden. Vi analyserer markedet, finder din niche og udvikler koncepter der rammer plet hos målgruppen. Det handler ikke bare om views, men om at opbygge et community.
-                                                </p>
-                                            </div>
-                                            <div class="flex gap-4 font-mono text-[9px] text-stone-500 uppercase tracking-widest pt-2">
-                                                 <div class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Konceptudvikling</div>
-                                                 <div class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Målgruppe Match</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Cinematic Card Image -->
-                                        <div class="relative w-full aspect-[16/9] overflow-hidden rounded-sm border border-white/10 bg-black">
-                                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60"></div>
-                                            <!-- Dark UI Overlay inside image -->
-                                            <div class="absolute top-6 right-6 z-20 font-mono text-[9px] text-stone-400 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-sm border border-white/5">
-                                                OPBEVARELSE_METRIK_V2.0
-                                            </div>
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-[1.5s] ease-out" alt="Strategy Dashboard">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- STEP 2 -->
-                            <div class="reveal group">
-                                <div class="flex flex-col md:flex-row gap-12 items-end">
-                                    <div class="w-full">
-                                        <div class="flex items-center gap-4 mb-6">
-                                            <span class="font-mono text-[10px] text-stone-400 border border-white/10 bg-white/5 px-3 py-1 rounded-full uppercase tracking-widest">02. Produktion</span>
-                                            <div class="h-px flex-1 bg-white/10"></div>
-                                        </div>
-
-                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-8">
-                                            <div class="">
-                                                <h3 class="font-serif text-3xl text-white mb-4">Full Scale Produktion</h3>
-                                                <p class="font-sans text-sm text-stone-400 leading-7">
-                                                    Fuld skala produktion. Fra script til final cut. Vi håndterer alt det tekniske - kamera, lys, lyd og redigering - så du kan fokusere på din forretning mens vi leverer content i broadcast-kvalitet.
-                                                </p>
-                                            </div>
-                                            <div class="flex gap-4 font-mono text-[9px] text-stone-500 uppercase tracking-widest pt-2">
-                                                <div class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> 4K Cinema</div>
-                                                <div class="flex items-center gap-2"><iconify-icon icon="lucide:check" class="text-white"></iconify-icon> Lyddesign</div>
-                                           </div>
-                                        </div>
-
-                                        <!-- Cinematic Card Image -->
-                                        <div class="relative w-full aspect-[16/9] overflow-hidden rounded-sm border border-white/10 bg-black">
-                                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60"></div>
-                                            <!-- Product floating aesthetic like screenshot -->
-                                            <div class="absolute bottom-6 left-6 z-20">
-                                                <span class="font-mono text-[9px] bg-white/10 backdrop-blur-md text-white px-2 py-1 uppercase tracking-widest border border-white/10">01. Kurering</span>
-                                            </div>
-                                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" alt="Camera Gear">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 3. TEAM GRID - REDESIGNED PREMIUM -->
-            <section class="reveal relative max-w-7xl mx-auto pt-32 pb-48 px-6">
-                <!-- Section Header -->
-                <div class="mb-32 flex flex-col items-center text-center">
-                    <div class="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent mb-6"></div>
-                     <span class="font-mono text-[10px] text-stone-500 tracking-[0.3em] uppercase mb-4 block">Partnere i C1</span>
-                     <h2 class="font-serif text-5xl md:text-6xl text-stone-100">Chapter 1 <span class="italic text-stone-600">Teamet</span></h2>
-                </div>
-
-                <div class="flex flex-col lg:flex-row gap-20 lg:gap-32 relative">
-                    
-                     <!-- PARTNER 1: Rasmus (Left, Higher) -->
-                     <div class="group flex flex-col lg:w-1/2 relative lg:-mt-20">
-                         <div class="relative w-full aspect-[3/4] overflow-hidden rounded-sm mb-8 border border-white/10 bg-zinc-900">
-                             <!-- Image -->
-                             <img src="assets/IMG_5030-3956b8e4-0238-4a94-9737-5e4cbae6ebd5.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 filter grayscale group-hover:grayscale-0 opacity-90 group-hover:opacity-100">
-                             
-                             <!-- Badge -->
-                             <div class="absolute top-6 left-6 backdrop-blur-md bg-black/50 border border-white/10 px-4 py-2 rounded-full">
-                                <span class="font-mono text-[9px] text-white uppercase tracking-widest">Produktion &amp; Kreativ Ledelse</span>
-                             </div>
-                         </div>
-
-                         <div class="relative pl-6 border-l border-white/10">
-                             <h3 class="font-serif text-3xl text-white mb-2">Rasmus Klüver Kristensen</h3>
-                             <p class="font-mono text-[10px] text-emerald-500 uppercase tracking-widest mb-6">Co-Founder &amp; Creative Director</p>
-                             
-                             <p class="font-sans text-sm text-stone-400 leading-7 max-w-md">
-                                Rasmus har skabt videoer som er gået viralt gennem et årti og lavet indhold for nogle af de største creators i Danmark. Rasmus er førende i storytelling og skaber videoer der gør indtryk som folk husker.
-                             </p>
-                             
-                             <div class="mt-8 pt-8 border-t border-white/5 flex items-center gap-6">
-                                <a href="https://www.linkedin.com/in/rasmus-kl%C3%BCver-kristensen-0abb43149/" class="text-stone-300 hover:text-white transition-colors font-serif italic text-lg flex items-center gap-2">
-                                    Forbind <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
-                                </a>
-                             </div>
-                         </div>
-                     </div>
-
-                     <!-- PARTNER 2: Mark (Right, Lower) -->
-                     <div class="group flex flex-col lg:w-1/2 relative lg:mt-48">
-                         <div class="relative w-full aspect-[3/4] overflow-hidden rounded-sm mb-8 border border-white/10 bg-zinc-900">
-                             <!-- Image -->
-                             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7e7f62d9-3086-437a-8efc-8f5276b0241d_800w.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 filter grayscale group-hover:grayscale-0 opacity-90 group-hover:opacity-100" style="border-radius: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; z-index: auto; display: flex; height: 930px;">
-                             
-                             <!-- Badge -->
-                             <div class="absolute top-6 left-6 backdrop-blur-md bg-black/50 border border-white/10 px-4 py-2 rounded-full">
-                                <span class="font-mono text-[9px] text-white uppercase tracking-widest">Strategi og Forretning</span>
-                             </div>
-                         </div>
-
-                         <div class="relative pl-6 border-l border-white/10">
-                             <h3 class="font-serif text-3xl text-white mb-2">Mark Tange</h3>
-                             <p class="font-mono text-[10px] text-emerald-500 uppercase tracking-widest mb-6">Co-founder &amp; Strategisk Partnership og Sales Manager</p>
-                             
-                             <p class="font-sans text-sm text-stone-400 leading-7 max-w-md">
-                                Mark Tange har lavet content i mange år og kombinerer forretning med content creation. Han skaber strategiske formater, der hjælper virksomheder med at konkurrere der hvor de næste generationer af målgrupper er.
-                             </p>
-
-                             <div class="mt-8 pt-8 border-t border-white/5 flex items-center gap-6">
-                                <a href="https://www.linkedin.com/in/marktange/" class="text-stone-300 hover:text-white transition-colors font-serif italic text-lg flex items-center gap-2">
-                                    Forbind <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
-                                </a>
-                             </div>
-                         </div>
-                     </div>
-
-                     <!-- Background Design Element connecting them -->
-                     <div class="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[80%] bg-gradient-to-b from-transparent via-white/10 to-transparent -z-10"></div>
-                     <div class="hidden lg:block absolute top-[40%] left-1/2 -translate-x-1/2 text-[200px] font-serif opacity-[0.03] text-white -z-10 select-none">&amp;</div>
-                </div>
-            </section>
-
-            <!-- 5. Portfolio Preview -->
-            <section class="reveal max-w-7xl mx-auto px-6 mb-0 pb-0 border-b border-white/5 pt-24">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/10 pb-6">
-                    <div>
-                        <span class="font-mono text-[10px] text-stone-400 tracking-widest uppercase mb-2 block">Portefølje</span>
-                        <h2 class="font-serif text-4xl text-stone-100">Udvalgte Cases</h2>
-                    </div>
-                    <button onclick="router('portfolio')" class="group flex items-center gap-2 font-mono text-[10px] text-stone-500 uppercase tracking-widest hover:text-white transition-colors mt-4 md:mt-0">
-                        Se alle cases <iconify-icon icon="lucide:arrow-right" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-[80vh] md:h-[600px]">
-                    <!-- Card 1 -->
-                    <div onclick="router('portfolio')" class="group relative h-full w-full overflow-hidden rounded-sm border border-white/10 cursor-pointer">
-                        <img src="assets/Creative_Brief_Presentation-65e4c2ee-a371-436a-8761-0037341d35db.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-80" alt="Case 1">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-8 w-full z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="font-serif text-2xl text-stone-100 mb-2 block">Dinero - Nyt Content Univers</span>
-                            <p class="font-mono text-[10px] text-stone-400 uppercase tracking-widest">Finans • YouTube</p>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div onclick="router('portfolio')" class="group relative h-full w-full overflow-hidden rounded-sm border border-white/10 cursor-pointer">
-                        <img src="assets/Mark_Tange_Spil_1__1_-dc9f55bb-1c95-49bc-9fe1-df13b84bc8c3.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-80" alt="Case 2">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-8 w-full z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="font-serif text-2xl text-stone-100 mb-2 block">Mark Tange - Tjente Millioner På Online-Spil</span>
-                            <p class="font-mono text-[10px] text-stone-400 uppercase tracking-widest">YouTube Video • Motion Grafik • Storytelling</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Social Media -->
-            <section class="reveal max-w-7xl mx-auto px-6 py-16 border-b border-white/5">
-                <div class="text-center mb-12">
-                    <span class="font-mono text-[10px] text-stone-500 tracking-[0.3em] uppercase mb-4 block">Følg os på de sociale medier</span>
-                </div>
-                <div class="flex justify-center items-center gap-12 md:gap-16">
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3 transition-all duration-500 hover:scale-110">
-                        <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 group-hover:bg-white/10 transition-all duration-500">
-                            <iconify-icon icon="lucide:youtube" class="text-stone-400 group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
-                        </div>
-                        <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest group-hover:text-stone-300 transition-colors">YouTube</span>
-                    </a>
-
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/company/chapter1" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3 transition-all duration-500 hover:scale-110">
-                        <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 group-hover:bg-white/10 transition-all duration-500">
-                            <iconify-icon icon="lucide:linkedin" class="text-stone-400 group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
-                        </div>
-                        <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest group-hover:text-stone-300 transition-colors">LinkedIn</span>
-                    </a>
-
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3 transition-all duration-500 hover:scale-110">
-                        <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 group-hover:bg-white/10 transition-all duration-500">
-                            <iconify-icon icon="lucide:instagram" class="text-stone-400 group-hover:text-white text-2xl transition-colors duration-500"></iconify-icon>
-                        </div>
-                        <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest group-hover:text-stone-300 transition-colors">Instagram</span>
-                    </a>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="border-t border-white/5 bg-black/40 backdrop-blur-sm">
-                <div class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-white/5 pt-8">
-                        <div class="font-mono text-[9px] text-stone-600 uppercase">
-                            <div>© 2025 Chapter 1</div>
-                        </div>
-                        <div class="font-mono text-[9px] text-stone-600 uppercase">
-                            <button onclick="router('privacy')" class="text-stone-500 hover:text-stone-300 transition-colors underline">Privatslivpolitik</button>
-                        </div>
-                        <div class="text-[9px] text-stone-600 uppercase" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
-                            <a href="mailto:kontakt@chapter1.dk" class="text-stone-500 hover:text-stone-300 transition-colors">kontakt@chapter1.dk</a>
-                        </div>
-                        <div class="font-mono text-[9px] text-stone-600 uppercase">
-                            <div>Aalborg - Odense</div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </main>
-
-        <!-- PAGE: PORTFOLIO -->
-        <main id="page-portfolio" class="page-view hidden absolute top-0 w-full min-h-screen bg-cinema-950 z-30 pt-32">
-            <div class="max-w-7xl mx-auto px-6 pb-24">
-                <div class="mb-24 border-b border-white/10 pb-12">
-                    <span class="font-mono text-[10px] text-stone-500 tracking-widest uppercase mb-4 block">Arkiv</span>
-                    <h1 class="font-serif text-5xl md:text-7xl text-stone-100">Udvalgte Cases</h1>
-                </div>
-
-                <div class="space-y-32">
-                    <!-- Case 1 -->
-                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center group">
-                         <div class="lg:col-span-7 relative overflow-hidden rounded-sm border border-white/10 cursor-pointer" onclick="router('project-dinero')">
-                             <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
-                             <img src="assets/Creative_Brief_Presentation-65e4c2ee-a371-436a-8761-0037341d35db.png" class="w-full aspect-video object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
-                         </div>
-                         <div class="lg:col-span-5">
-                             <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest mb-4 block">01 / Strategi</span>
-                             <h2 class="font-serif text-4xl text-white mb-6 cursor-pointer hover:text-stone-200 transition-colors" onclick="router('project-dinero')">Dinero - Nyt Content Univers</h2>
-                             <p class="font-sans text-sm text-stone-400 leading-relaxed mb-8">
-                                 Opbygning af Danmarks største finanskanal. Vi skabte et visuelt sprog der kommunikerer troværdighed og innovation.
-                             </p>
-                             <ul class="font-mono text-[10px] text-stone-500 uppercase tracking-widest space-y-2 border-l border-white/10 pl-4">
-                                 <li>Konceptudvikling</li>
-                                 <li>Fuld Produktion</li>
-                                 <li>Kanalstyring</li>
-                             </ul>
-                         </div>
-                    </article>
-
-                    <!-- Case 2 -->
-                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center group">
-                        <div class="lg:col-span-7 relative overflow-hidden rounded-sm border border-white/10 lg:order-2">
-                             <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
-                             <img src="assets/Mark_Tange_Spil_1__1_-dc9f55bb-1c95-49bc-9fe1-df13b84bc8c3.png" class="w-full aspect-video object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="lg:col-span-5 lg:order-1">
-                             <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest mb-4 block">02 / YouTube Video</span>
-                             <h2 class="font-serif text-4xl text-white mb-6">Mark Tange - Tjente Millioner På Online-Spil</h2>
-                             <p class="font-sans text-sm text-stone-400 leading-relaxed mb-8">
-                                 En personlig fortælling om succes gennem online gaming. Vi skabte et visuelt univers der kombinerer storytelling med motion grafik for at skabe et engagerende YouTube format.
-                             </p>
-                             <ul class="font-mono text-[10px] text-stone-500 uppercase tracking-widest space-y-2 border-l border-white/10 pl-4">
-                                 <li>YouTube Video</li>
-                                 <li>Motion Grafik</li>
-                                 <li>Storytelling</li>
-                             </ul>
-                        </div>
-                   </article>
-                </div>
-
-                <div class="mt-32 border-t border-white/10 pt-12 text-center">
-                    <button onclick="router('contact')" class="font-serif text-3xl text-stone-200 hover:text-white hover:italic transition-all">Start et nyt kapitel <span class="not-italic text-stone-500 text-lg">→</span></button>
-                </div>
-            </div>
-        </main>
-
-        <!-- PAGE: CONTACT -->
-        <main id="page-contact" class="page-view hidden absolute w-full min-h-screen z-30 flex flex-col items-center justify-center pt-32 pb-32 bg-cinema-950">
-            <div class="w-full max-w-7xl mx-auto px-6">
-                
-                <!-- Header Section -->
-                <div class="text-center mb-24 reveal">
-                    <div class="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto mb-6"></div>
-                    <span class="font-mono text-[10px] text-stone-500 tracking-[0.3em] uppercase mb-4 block">Kontakt</span>
-                    <h1 class="font-serif text-5xl md:text-7xl text-stone-100 mb-8">Start et nyt <span class="italic text-stone-600">kapitel</span></h1>
-                    <p class="font-mono text-sm text-stone-400 leading-relaxed max-w-2xl mx-auto">
-                        Vi er altid klar til at høre om nye projekter. Fortæl os om dine ambitioner, og lad os skabe noget unikt sammen.
-                    </p>
-                </div>
-
-                <!-- Main Content Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-24">
-                    
-                    <!-- Left: Contact Information -->
-                    <div class="reveal space-y-12">
-                        <div>
-                            <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest mb-4 block">Send os en email</span>
-                            <a href="mailto:kontakt@chapter1.dk" class="group flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-all duration-500">
-                                    <iconify-icon icon="lucide:mail" class="text-stone-400 group-hover:text-white transition-colors"></iconify-icon>
-                                </div>
-                                <span class="font-serif text-2xl text-stone-200 group-hover:text-white transition-colors border-b border-transparent group-hover:border-white/50">kontakt@chapter1.dk</span>
-                            </a>
-                        </div>
-
-                        <div>
-                            <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest mb-4 block">Lokation</span>
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                                    <iconify-icon icon="lucide:map-pin" class="text-stone-400"></iconify-icon>
-                                </div>
-                                <p class="font-serif text-xl text-stone-200">Aalborg - Odense</p>
-                            </div>
-                        </div>
-
-                        <div class="pt-8 border-t border-white/10">
-                            <div class="flex items-center gap-3 font-mono text-[10px] text-stone-500">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
-                                <span>Vi er aktive - skriv til os</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: CTA Section -->
-                    <div class="reveal flex flex-col justify-center">
-                        <div class="glass-panel border border-white/10 rounded-sm p-12 lg:p-16 relative overflow-hidden">
-                            <!-- Background Pattern -->
-                            <div class="absolute inset-0 opacity-5 pointer-events-none">
-                                <svg width="100%" height="100%">
-                                    <pattern id="contact-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <circle cx="2" cy="2" r="1" fill="white"></circle>
-                                    </pattern>
-                                    <rect width="100%" height="100%" fill="url(#contact-grid)"></rect>
-                                </svg>
-                            </div>
-                            
-                            <div class="relative z-10">
-                                <h2 class="font-serif text-3xl text-white mb-6">Klar til at starte?</h2>
-                                <p class="font-mono text-sm text-stone-400 leading-relaxed mb-8">
-                                    Send os en besked, og lad os finde ud af, hvordan vi kan hjælpe dig med at bygge dit YouTube univers.
-                                </p>
-                                
-                                <a href="mailto:kontakt@chapter1.dk" class="group w-full inline-flex items-center justify-between bg-white/5 hover:bg-white/10 border border-white/10 rounded-sm px-8 py-5 transition-all duration-500 hover:border-white/30">
-                                    <span class="font-mono text-[11px] text-stone-300 uppercase tracking-widest group-hover:text-white transition-colors">Tryk her for at starte et nyt kapitel</span>
-                                    <iconify-icon icon="lucide:arrow-right" class="text-stone-500 group-hover:text-white group-hover:translate-x-1 transition-all"></iconify-icon>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bottom Decorative Element -->
-                <div class="text-center reveal">
-                    <div class="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto"></div>
-                </div>
-
-            </div>
-        </main>
-
-        <!-- PAGE: PROJECT DINERO -->
-        <main id="page-project-dinero" class="page-view hidden absolute w-full min-h-screen z-30 bg-cinema-950 pt-32 pb-32">
-            <div class="max-w-7xl mx-auto px-6">
-                
-                <!-- Back Button -->
-                <div class="mb-12">
-                    <button onclick="router('portfolio')" class="inline-flex items-center gap-2 font-mono text-[10px] text-stone-500 uppercase tracking-widest hover:text-stone-300 transition-colors">
-                        <iconify-icon icon="lucide:arrow-left" class="text-stone-500"></iconify-icon>
-                        Tilbage til portefølje
-                    </button>
-                </div>
-
-                <!-- Header Section -->
-                <div class="mb-16 reveal">
-                    <div class="mb-6">
-                        <span class="font-mono text-[10px] text-stone-500 uppercase tracking-widest mb-4 block">01 / Strategy</span>
-                        <h1 class="font-serif text-5xl md:text-7xl text-stone-100 mb-6">Dinero - Nyt Content Univers</h1>
-                        <p class="font-mono text-sm text-stone-400 leading-relaxed max-w-3xl">
-                            Opbygning af Danmarks største finanskanal. Vi skabte et visuelt sprog der kommunikerer troværdighed og innovation.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Hero Image -->
-                <div class="mb-16 reveal">
-                    <div class="relative w-full aspect-video overflow-hidden rounded-sm border border-white/10">
-                        <img src="assets/Creative_Brief_Presentation-65e4c2ee-a371-436a-8761-0037341d35db.png" class="w-full h-full object-cover opacity-90">
-                    </div>
-                </div>
-
-                <!-- Content Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-                    <!-- Main Content -->
-                    <div class="lg:col-span-2 space-y-12 reveal">
-                        <section>
-                            <h2 class="font-serif text-3xl text-white mb-6">Projektet</h2>
-                            <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                                <p>
-                                    Dinero er Danmarks største finanskanal på YouTube. Vi hjalp med at bygge et komplet content univers fra bunden, der kombinerer troværdighed med innovation.
-                                </p>
-                                <p>
-                                    Projektet omfattede udvikling af et unikt visuelt sprog, der skaber genkendelighed og tillid hos seerne. Vi designede formater, der engagerer målgruppen og skaber loyalitet gennem konsistent, høj kvalitet content.
-                                </p>
-                                <p>
-                                    Gennem strategisk planlægning og professionel produktion har vi hjulpet Dinero med at etablere sig som en førende stemme inden for finans på YouTube.
-                                </p>
-                            </div>
-                        </section>
-
-                        <!-- Video Section (placeholder for embedded video) -->
-                        <section>
-                            <h2 class="font-serif text-3xl text-white mb-6">Video Content</h2>
-                            <div class="relative w-full aspect-video overflow-hidden rounded-sm border border-white/10 bg-black/40">
-                                <!-- Placeholder for embedded YouTube video -->
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="text-center">
-                                        <iconify-icon icon="lucide:play" class="text-stone-500 text-6xl mb-4"></iconify-icon>
-                                        <p class="font-mono text-xs text-stone-500 uppercase tracking-widest">Video kommer snart</p>
-                                    </div>
-                                </div>
-                                <!-- Uncomment and add YouTube embed code when ready:
-                                <iframe class="w-full h-full" src="YOUTUBE_EMBED_URL" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                -->
-                            </div>
-                        </section>
-
-                        <!-- Additional Images Section -->
-                        <section>
-                            <h2 class="font-serif text-3xl text-white mb-6">Visuelt Univers</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-sm border border-white/10">
-                                    <img src="assets/Creative_Brief_Presentation-65e4c2ee-a371-436a-8761-0037341d35db.png" class="w-full h-full object-cover opacity-80">
-                                </div>
-                                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-sm border border-white/10">
-                                    <img src="assets/Creative_Brief_Presentation-65e4c2ee-a371-436a-8761-0037341d35db.png" class="w-full h-full object-cover opacity-80">
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- Sidebar -->
-                    <div class="lg:col-span-1 reveal">
-                        <div class="glass-panel border border-white/10 rounded-sm p-8 sticky top-32">
-                            <h3 class="font-serif text-xl text-white mb-6">Services</h3>
-                            <ul class="font-mono text-[10px] text-stone-500 uppercase tracking-widest space-y-3 border-l border-white/10 pl-4">
-                                <li>Konceptudvikling</li>
-                                <li>Fuld Produktion</li>
-                                <li>Kanalstyring</li>
-                                <li>Visual Identity</li>
-                                <li>Content Strategy</li>
-                            </ul>
-
-                            <div class="mt-12 pt-8 border-t border-white/10">
-                                <h3 class="font-serif text-xl text-white mb-4">Kategori</h3>
-                                <p class="font-mono text-[10px] text-stone-500 uppercase tracking-widest">Finans • YouTube</p>
-                            </div>
-
-                            <div class="mt-8">
-                                <button onclick="router('contact')" class="w-full inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-sm px-6 py-4 transition-all duration-300 font-mono text-[10px] text-stone-300 uppercase tracking-widest hover:text-white">
-                                    Start dit projekt
-                                    <iconify-icon icon="lucide:arrow-right" class="text-stone-500"></iconify-icon>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation to next project -->
-                <div class="border-t border-white/10 pt-12 reveal">
-                    <div class="flex justify-between items-center">
-                        <button onclick="router('portfolio')" class="inline-flex items-center gap-2 font-mono text-[10px] text-stone-500 uppercase tracking-widest hover:text-stone-300 transition-colors">
-                            <iconify-icon icon="lucide:arrow-left" class="text-stone-500"></iconify-icon>
-                            Tilbage til portefølje
-                        </button>
-                        <button onclick="router('project-mark-tange')" class="inline-flex items-center gap-2 font-mono text-[10px] text-stone-500 uppercase tracking-widest hover:text-stone-300 transition-colors">
-                            Næste projekt
-                            <iconify-icon icon="lucide:arrow-right" class="text-stone-500"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </main>
-
-        <!-- PAGE: PRIVACY -->
-        <main id="page-privacy" class="page-view hidden absolute w-full min-h-screen z-30 flex flex-col items-center justify-center pt-32 pb-32 bg-cinema-950">
-            <div class="w-full max-w-4xl mx-auto px-6">
-                
-                <!-- Header Section -->
-                <div class="text-center mb-16 reveal">
-                    <div class="w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent mx-auto mb-6"></div>
-                    <span class="font-mono text-[10px] text-stone-500 tracking-[0.3em] uppercase mb-4 block">Privatslivpolitik</span>
-                    <h1 class="font-serif text-5xl md:text-6xl text-stone-100 mb-8">Beskyttelse af <span class="italic text-stone-600">dine data</span></h1>
-                </div>
-
-                <!-- Content -->
-                <div class="reveal space-y-12 mb-24">
-                    
-                    <!-- Virksomhedsoplysninger -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">1. Virksomhedsoplysninger</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Chapter 1 er en del af <strong class="text-stone-200">MT Media ApS</strong> (CVR: 42431974).
-                            </p>
-                            <p>
-                                <strong class="text-stone-200">Kontaktoplysninger:</strong><br>
-                                Email: kontakt@chapter1.dk<br>
-                                Lokation: Aalborg - Odense
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Dataindsamling -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">2. Dataindsamling</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Vi indsamler kun de personoplysninger, der er nødvendige for at kunne levere vores tjenester og kommunikere med dig. Dette kan omfatte:
-                            </p>
-                            <ul class="list-disc list-inside space-y-2 ml-4">
-                                <li>Navn og kontaktoplysninger (email, telefonnummer)</li>
-                                <li>Virksomhedsoplysninger</li>
-                                <li>Kommunikation mellem dig og os</li>
-                                <li>Tekniske data (IP-adresse, browser type) ved besøg på vores hjemmeside</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <!-- Formål -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">3. Formål med databehandling</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>Vi behandler dine personoplysninger til følgende formål:</p>
-                            <ul class="list-disc list-inside space-y-2 ml-4">
-                                <li>At kunne kommunikere med dig vedrørende vores tjenester</li>
-                                <li>At levere og forbedre vores tjenester</li>
-                                <li>At opfylde juridiske forpligtelser</li>
-                                <li>At forbedre vores hjemmeside og brugeroplevelse</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <!-- Databehandling -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">4. Retsgrundlag for databehandling</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Vi behandler dine personoplysninger på baggrund af:
-                            </p>
-                            <ul class="list-disc list-inside space-y-2 ml-4">
-                                <li><strong class="text-stone-200">Samtykke:</strong> Når du har givet os dit samtykke til behandling</li>
-                                <li><strong class="text-stone-200">Kontrakt:</strong> Når behandlingen er nødvendig for at opfylde en kontrakt med dig</li>
-                                <li><strong class="text-stone-200">Legitim interesse:</strong> Når vi har en legitim interesse i at behandle dataene</li>
-                                <li><strong class="text-stone-200">Juridisk forpligtelse:</strong> Når vi er forpligtet til at behandle dataene jf. gældende lovgivning</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <!-- Dine rettigheder -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">5. Dine rettigheder</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>Du har følgende rettigheder vedrørende dine personoplysninger:</p>
-                            <ul class="list-disc list-inside space-y-2 ml-4">
-                                <li><strong class="text-stone-200">Indsigt:</strong> Ret til at få oplyst, hvilke personoplysninger vi behandler om dig</li>
-                                <li><strong class="text-stone-200">Rettelse:</strong> Ret til at få rettet forkerte eller mangelfulde oplysninger</li>
-                                <li><strong class="text-stone-200">Sletning:</strong> Ret til at få slettet dine personoplysninger under visse betingelser</li>
-                                <li><strong class="text-stone-200">Begrænsning:</strong> Ret til at få begrænset behandlingen af dine personoplysninger</li>
-                                <li><strong class="text-stone-200">Dataportabilitet:</strong> Ret til at modtage dine personoplysninger i et struktureret format</li>
-                                <li><strong class="text-stone-200">Indsigelse:</strong> Ret til at gøre indsigelse mod behandlingen af dine personoplysninger</li>
-                                <li><strong class="text-stone-200">Tilbagetrækning af samtykke:</strong> Ret til at tilbagetrække dit samtykke til behandling</li>
-                            </ul>
-                            <p class="mt-4">
-                                For at udøve dine rettigheder, kan du kontakte os på: <a href="mailto:kontakt@chapter1.dk" class="text-stone-200 hover:text-white underline">kontakt@chapter1.dk</a>
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Databehandlere -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">6. Databehandlere og videregivelse</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Vi kan videregive dine personoplysninger til tredjeparter, der handler som databehandlere på vores vegne. Disse kan omfatte:
-                            </p>
-                            <ul class="list-disc list-inside space-y-2 ml-4">
-                                <li>IT-leverandører og hosting-udbydere</li>
-                                <li>Marketing- og kommunikationspartnere</li>
-                                <li>Bogføring og regnskabsførere</li>
-                            </ul>
-                            <p>
-                                Vi videregiver kun personoplysninger til tredjeparter, der har indgået en databehandleraftale med os, og som kun må behandle personoplysningerne i overensstemmelse med vores instruktioner og gældende databeskyttelseslovgivning.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Opbevaring -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">7. Opbevaring af personoplysninger</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Vi opbevarer dine personoplysninger så længe, det er nødvendigt for at opfylde de formål, de er indsamlet til, medmindre en længere opbevaringsperiode er påkrævet eller tilladt ved lov.
-                            </p>
-                            <p>
-                                Når personoplysningerne ikke længere er nødvendige, sletter eller anonymiserer vi dem på en sikker måde.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Sikkerhed -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">8. Sikkerhed</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Vi har implementeret passende tekniske og organisatoriske foranstaltninger for at beskytte dine personoplysninger mod utilsigtet eller ulovlig behandling, tab, ødelæggelse eller skade.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Klage -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">9. Klageadgang</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Hvis du mener, at vores behandling af dine personoplysninger ikke er i overensstemmelse med databeskyttelseslovgivningen, har du ret til at klage til Datatilsynet.
-                            </p>
-                            <p>
-                                <strong class="text-stone-200">Datatilsynet</strong><br>
-                                Borgergade 28, 5.<br>
-                                1300 København K<br>
-                                Telefon: 33 19 32 00<br>
-                                Email: dt@datatilsynet.dk<br>
-                                Website: <a href="https://www.datatilsynet.dk" target="_blank" class="text-stone-200 hover:text-white underline">www.datatilsynet.dk</a>
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Kontakt -->
-                    <section class="glass-panel border border-white/10 rounded-sm p-8 lg:p-12">
-                        <h2 class="font-serif text-2xl text-white mb-6">10. Kontakt</h2>
-                        <div class="space-y-4 font-sans text-sm text-stone-400 leading-relaxed">
-                            <p>
-                                Hvis du har spørgsmål til denne privatslivspolitik eller vores behandling af personoplysninger, er du velkommen til at kontakte os:
-                            </p>
-                            <p>
-                                <strong class="text-stone-200">Chapter 1 / MT Media ApS</strong><br>
-                                CVR: 42431974<br>
-                                Email: <a href="mailto:kontakt@chapter1.dk" class="text-stone-200 hover:text-white underline">kontakt@chapter1.dk</a><br>
-                                Lokation: Aalborg - Odense
-                            </p>
-                        </div>
-                    </section>
-
-                </div>
-
-                <!-- Back Button -->
-                <div class="text-center mb-16 reveal">
-                    <button onclick="router('home')" class="inline-flex items-center gap-2 font-mono text-[10px] text-stone-500 uppercase tracking-widest hover:text-stone-300 transition-colors">
-                        <iconify-icon icon="lucide:arrow-left" class="text-stone-500"></iconify-icon>
-                        Tilbage til forsiden
-                    </button>
-                </div>
-
-            </div>
-        </main>
-
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        // Portfolio Data - Shared between home and portfolio pages
-        const portfolioData = {
-            case1: {
-                image: 'assets/Creative_Brief_Presentation-65e4c2ee-a371-436a-8761-0037341d35db.png',
-                title: 'Dinero - Nyt Content Univers',
-                subtitle: 'Finans • YouTube',
-                category: '01 / Strategi',
-                description: 'Opbygning af Danmarks største finanskanal. Vi skabte et visuelt sprog der kommunikerer troværdighed og innovation.',
-                tags: ['Konceptudvikling', 'Fuld Produktion', 'Kanalstyring']
-            },
-            case2: {
-                image: 'assets/Mark_Tange_Spil_1__1_-dc9f55bb-1c95-49bc-9fe1-df13b84bc8c3.png',
-                title: 'Mark Tange - Tjente Millioner På Online-Spil',
-                subtitle: 'YouTube Video • Motion Grafik • Storytelling',
-                category: '02 / Recruitment',
-                description: 'Employer branding gennem tech-talks. En serie der viser kulturen indefra.',
-                tags: ['Brand Strategy', 'Video Series', 'Social Cuts']
-            }
-        };
-
-        // Sync portfolio content function
-        function syncPortfolioContent() {
-            // Update home page Card 1 (first card in grid)
-            const homePage = document.getElementById('page-home');
-            if (homePage) {
-                const homeCards = homePage.querySelectorAll('.grid.grid-cols-1.md\\:grid-cols-3 > div.group');
-                if (homeCards.length > 0) {
-                    const card1 = homeCards[0];
-                    const img1 = card1.querySelector('img');
-                    const title1 = card1.querySelector('span.font-serif.text-2xl');
-                    const subtitle1 = card1.querySelector('p.font-mono.text-\\[10px\\]');
-                    if (img1) img1.src = portfolioData.case1.image;
-                    if (title1) title1.textContent = portfolioData.case1.title;
-                    if (subtitle1) subtitle1.textContent = portfolioData.case1.subtitle;
-                }
-                
-                // Update home page Card 2 (second card in grid)
-                if (homeCards.length > 1) {
-                    const card2 = homeCards[1];
-                    const img2 = card2.querySelector('img');
-                    const title2 = card2.querySelector('span.font-serif.text-2xl');
-                    const subtitle2 = card2.querySelector('p.font-mono.text-\\[10px\\]');
-                    if (img2) img2.src = portfolioData.case2.image;
-                    if (title2) title2.textContent = portfolioData.case2.title;
-                    if (subtitle2) subtitle2.textContent = portfolioData.case2.subtitle;
-                }
-            }
-
-            // Update portfolio page Case 1 (first article)
-            const portfolioPage = document.getElementById('page-portfolio');
-            if (portfolioPage) {
-                const articles = portfolioPage.querySelectorAll('article');
-                if (articles.length > 0) {
-                    const case1 = articles[0];
-                    const img = case1.querySelector('img');
-                    const title = case1.querySelector('h2.font-serif.text-4xl');
-                    if (img) img.src = portfolioData.case1.image;
-                    if (title) title.textContent = portfolioData.case1.title;
-                }
-            }
-        }
-
-        // Router Logic
-        function router(pageName) {
-            const pages = document.querySelectorAll('.page-view');
-            pages.forEach(page => {
-                if(page.id === 'page-' + pageName) {
-                    page.classList.remove('hidden');
-                    void page.offsetWidth; // Trigger reflow
-                    page.classList.add('fade-in');
-                } else {
-                    page.classList.add('hidden');
-                    page.classList.remove('fade-in');
-                }
-            });
-
-            // Nav State
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => {
-                if(link.id === 'nav-' + pageName) {
-                    link.classList.add('text-white');
-                    link.classList.add('after:w-full');
-                } else {
-                    link.classList.remove('text-white');
-                    link.classList.remove('after:w-full');
-                }
-            });
-
-            window.scrollTo(0, 0);
-            
-            // Sync portfolio content when switching pages
-            syncPortfolioContent();
-        }
-
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-            router('home');
-            
-            // Sync portfolio content between pages
-            syncPortfolioContent();
-
-            // Scroll Reveal
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-            // Cursor Logic
-            const cursorGlow = document.getElementById('cursor-glow');
-            const cursorDot = document.getElementById('cursor-dot');
-
-            document.addEventListener('mousemove', (e) => {
-                const x = e.clientX;
-                const y = e.clientY;
-                cursorDot.style.left = x + 'px';
-                cursorDot.style.top = y + 'px';
-                cursorGlow.style.left = x + 'px';
-                cursorGlow.style.top = y + 'px';
-            });
-
-            // Hover interactions
-            const hoverElements = document.querySelectorAll('a, button, .group, .nav-link');
-            hoverElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorGlow.style.width = '150px';
-                    cursorGlow.style.height = '150px';
-                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorGlow.style.width = '300px';
-                    cursorGlow.style.height = '300px';
-                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                });
-            });
-        });
-    </script>
 </body></html>
